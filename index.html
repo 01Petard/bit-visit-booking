@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>北理工访客预约系统</title>
+    <link rel="icon" type="image/svg+xml" href="https://www.bit.edu.cn/images/gb20190805/logo_01.svg">
     <style>
         * {
             margin: 0;
@@ -90,6 +91,44 @@
             gap: 15px;
         }
 
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .school-name {
+            margin-right: 0;
+        }
+
+        .header-logo h1 {
+            margin: 0;
+            margin-left: 0;
+            padding-left: 0;
+            font-size: 24px;
+            font-weight: 700;
+            white-space: nowrap;
+            text-align: left;
+            flex: none;
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .school-logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .school-name {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
         .header-actions {
             display: flex;
             align-items: center;
@@ -172,14 +211,49 @@
             display: none;
         }
 
+        .support-btn {
+            padding: 0;
+            background: none;
+            color: #64748b;
+            border: none;
+            border-radius: 0;
+            font-size: 12px;
+            font-weight: normal;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            box-shadow: none;
+            text-decoration: none;
+        }
+
+        .support-btn:hover {
+            transform: none;
+            box-shadow: none;
+            background: none;
+            border: none;
+            color: #475569;
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
                 align-items: stretch;
             }
-            h1 {
-                font-size: 22px;
-                text-align: center;
+
+            .header-logo {
+                justify-content: center;
+            }
+
+            .school-logo {
+                height: 40px;
+            }
+
+            .school-name {
+                height: 32px;
+            }
+
+            .header-logo h1 {
+                font-size: 20px;
             }
             .header-actions {
                 justify-content: center;
@@ -389,6 +463,21 @@
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
+        }
+
+        #supportConfirmBtn {
+            background: #fed7aa;
+            color: #c2410c;
+            border: 1px solid rgba(234, 88, 12, 0.3);
+        }
+
+        #supportConfirmBtn:hover {
+            background: #fdba74;
+            box-shadow: 0 4px 16px rgba(234, 88, 12, 0.3);
+        }
+
+        #supportConfirmBtn:hover::before {
+            background: rgba(251, 146, 60, 0.3);
         }
 
         .btn-query {
@@ -1003,6 +1092,14 @@
 
         .footer a:hover {
             color: #475569;
+        }
+
+        .footer button {
+            pointer-events: auto;
+        }
+
+        .footer a:hover {
+            color: #475569;
             text-decoration: underline;
         }
 
@@ -1050,7 +1147,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>北京理工大学访客预约系统</h1>
+            <div class="header-logo">
+                <img src="https://www.bit.edu.cn/images/gb20190805/logo_01.svg" alt="北京理工大学校徽" class="school-logo">
+                <img src="https://www.bit.edu.cn/images/gb20190805/logo_02.svg" alt="北京理工大学文字" class="school-name">
+                <h1>访客预约系统</h1>
+            </div>
             <div class="header-actions">
                 <div class="login-status" id="loginStatus">
                     <span class="login-status-dot"></span>
@@ -1145,6 +1246,19 @@
             <h2>预约成功！</h2>
             <p id="successMessage">您的预约已成功提交，请等待审核。</p>
             <button type="button" class="btn" id="successConfirmBtn">确定</button>
+        </div>
+    </div>
+
+    <div class="login-modal" id="supportModal">
+        <div class="login-box">
+            <button class="close-btn" id="closeSupportBtn">×</button>
+            <h2>技术支持</h2>
+            <div style="text-align: left; margin: 20px 0; line-height: 2;">
+                <p style="margin-bottom: 15px; color: #475569;">如需技术支持，请联系 黄老师：</p>
+                <p style="margin-bottom: 10px;"><strong>邮箱：</strong><a href="mailto:1520394133@qq.com" style="color: #3b82f6; text-decoration: none;">1520394133@qq.com</a></p>
+                <p><strong>手机：</strong><span style="color: #1e293b;">13248684099</span></p>
+            </div>
+            <button type="button" class="btn" id="supportConfirmBtn">确定</button>
         </div>
     </div>
 
@@ -1333,6 +1447,16 @@
 
         function hideLoginModal() {
             document.getElementById('loginModal').classList.remove('show');
+        }
+
+        // 显示技术支持模态框
+        function showSupportModal() {
+            document.getElementById('supportModal').classList.add('show');
+        }
+
+        // 隐藏技术支持模态框
+        function hideSupportModal() {
+            document.getElementById('supportModal').classList.remove('show');
         }
 
         // 发送验证码
@@ -1768,9 +1892,56 @@
         // 将queryBookingRecords暴露到全局作用域，供分页按钮使用
         window.queryBookingRecords = queryBookingRecords;
 
+        // 显示技术支持模态框
+        function showSupportModal() {
+            document.getElementById('supportModal').classList.add('show');
+        }
+
+        // 隐藏技术支持模态框
+        function hideSupportModal() {
+            document.getElementById('supportModal').classList.remove('show');
+        }
+
+        // 绑定技术支持相关事件
+        function bindSupportEvents() {
+            const supportBtn = document.getElementById('supportBtn');
+            if (supportBtn) {
+                supportBtn.addEventListener('click', () => {
+                    showSupportModal();
+                });
+            }
+
+            const closeSupportBtn = document.getElementById('closeSupportBtn');
+            if (closeSupportBtn) {
+                closeSupportBtn.addEventListener('click', hideSupportModal);
+            }
+
+            const supportConfirmBtn = document.getElementById('supportConfirmBtn');
+            if (supportConfirmBtn) {
+                supportConfirmBtn.addEventListener('click', hideSupportModal);
+            }
+
+            const supportModal = document.getElementById('supportModal');
+            if (supportModal) {
+                supportModal.addEventListener('click', (e) => {
+                    if (e.target.id === 'supportModal') {
+                        hideSupportModal();
+                    }
+                });
+            }
+        }
+
         // 初始化
         initDateTimeInputs();
         updateLoginStatus();
+
+        // 绑定技术支持事件（延迟执行以确保DOM已加载）
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', bindSupportEvents);
+        } else {
+            // DOM已经加载完成，延迟一点确保footer已渲染
+            setTimeout(bindSupportEvents, 0);
+        }
     </script>
 
     <div class="footer">
@@ -1781,7 +1952,7 @@
             <span class="footer-separator">|</span>
             <span><a href="https://www.bugstack.icu/" target="_blank" rel="noopener noreferrer">友情链接</a></span>
             <span class="footer-separator">|</span>
-            <span><a href="mailto:1520394133@qq.com?subject=访客预约系统技术支持&body=您好，我需要技术支持，请描述您的问题：" rel="noopener noreferrer">技术支持</a></span>
+            <button class="support-btn" id="supportBtn" type="button">技术支持</button>
         </div>
         <div class="footer-meta">
             <span>© 2025 北京理工大学访客预约系统</span>
