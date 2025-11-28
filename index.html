@@ -836,6 +836,75 @@
         .toast.warning .toast-content {
             color: #a16207;
         }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.8;
+            z-index: 1;
+            pointer-events: none;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .footer a {
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.3s;
+            pointer-events: auto;
+        }
+
+        .footer a:hover {
+            color: #475569;
+            text-decoration: underline;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 11px;
+            margin-bottom: -10px;
+        }
+
+        .footer-separator {
+            color: #cbd5e1;
+        }
+
+        @media (max-width: 600px) {
+            .footer {
+                font-size: 11px;
+                bottom: 10px;
+                padding: 0 15px;
+            }
+            .footer-info,
+            .footer-meta {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .footer-separator {
+                display: none;
+            }
+            .footer-meta {
+                font-size: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1480,6 +1549,26 @@
         initDateTimeInputs();
         updateLoginStatus();
     </script>
+
+    <div class="footer">
+        <div class="footer-info">
+            <span><a href="https://bwvstr.bit.edu.cn/" target="_blank" rel="noopener noreferrer">官方预约</a></span>
+            <span class="footer-separator">|</span>
+            <span><a href="https://www.bit.edu.cn/" target="_blank" rel="noopener noreferrer">学校官网</a></span>
+            <span class="footer-separator">|</span>
+            <span><a href="https://www.bugstack.icu/" target="_blank" rel="noopener noreferrer">友情链接</a></span>
+            <span class="footer-separator">|</span>
+            <span><a href="mailto:1520394133@qq.com?subject=访客预约系统技术支持&body=您好，我需要技术支持，请描述您的问题：" rel="noopener noreferrer">技术支持</a></span>
+        </div>
+        <div class="footer-meta">
+            <span>© 2025 北京理工大学访客预约系统</span>
+            <span class="footer-separator">|</span>
+            <!-- <span>备案号：京ICP备xxxxxxxx号</span> -->
+            <!-- <span class="footer-separator">|</span> -->
+            <span>版本：v1.0.0</span>
+            <span class="footer-separator">|</span>
+            <span>仅限校内访客预约使用，请勿用于其他用途</span>
+        </div>
+    </div>
 </body>
 </html>
-
