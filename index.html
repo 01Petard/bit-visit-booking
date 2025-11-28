@@ -117,6 +117,18 @@
             letter-spacing: 2px;
         }
 
+        .header-logo a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .header-logo a:hover {
+            opacity: 0.8;
+        }
+
         .school-logo {
             height: 50px;
             width: auto;
@@ -235,6 +247,10 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
             .header {
                 flex-direction: column;
                 align-items: stretch;
@@ -261,6 +277,8 @@
             }
             .container {
                 padding: 25px 20px;
+                max-width: 100%;
+                margin: 0 auto;
             }
             .form-group {
                 animation-delay: 0s !important;
@@ -268,6 +286,10 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 15px 8px;
+            }
+
             h1 {
                 font-size: 20px;
             }
@@ -294,6 +316,11 @@
             .send-code-btn {
                 width: 100%;
                 margin-top: 10px;
+            }
+            .container {
+                padding: 20px 15px;
+                max-width: 100%;
+                margin: 0 auto;
             }
         }
 
@@ -329,6 +356,10 @@
             color: #b91c1c;
             transform: translateY(-1px);
             box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+        }
+
+        .logout-btn.hidden {
+            display: none;
         }
 
         .form-group {
@@ -1142,14 +1173,17 @@
                 font-size: 10px;
             }
         }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div class="header-logo">
-                <img src="https://www.bit.edu.cn/images/gb20190805/logo_01.svg" alt="北京理工大学校徽" class="school-logo">
-                <img src="https://www.bit.edu.cn/images/gb20190805/logo_02.svg" alt="北京理工大学文字" class="school-name">
+                <a href="https://www.bit.edu.cn/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://www.bit.edu.cn/images/gb20190805/logo_01.svg" alt="北京理工大学校徽" class="school-logo">
+                    <img src="https://www.bit.edu.cn/images/gb20190805/logo_02.svg" alt="北京理工大学文字" class="school-name">
+                </a>
                 <h1>访客预约系统</h1>
             </div>
             <div class="header-actions">
@@ -1267,34 +1301,24 @@
         const TOKEN_KEY = 'bit_visit_token';
         const BOOKING_PARAMS_KEY = 'bit_booking_params';
 
-        // 初始化日期时间选择器（当前时间往后7天）
-        function initDateTimeInputs() {
-            const now = new Date();
-            const maxDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+        // 设置默认日期时间
+        function setDefaultDateTime() {
+            const beginTimeInput = document.getElementById('beginTime');
+            const endTimeInput = document.getElementById('endTime');
             
-            const beginInput = document.getElementById('beginTime');
-            const endInput = document.getElementById('endTime');
+            if (beginTimeInput && !beginTimeInput.value) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(9, 0, 0, 0);
+                beginTimeInput.value = formatDateTimeLocal(tomorrow);
+            }
             
-            // 设置最小值为当前时间
-            const minDateTime = formatDateTimeLocal(now);
-            beginInput.min = minDateTime;
-            endInput.min = minDateTime;
-            
-            // 设置最大值为7天后
-            const maxDateTime = formatDateTimeLocal(maxDate);
-            beginInput.max = maxDateTime;
-            endInput.max = maxDateTime;
-            
-            // 默认开始时间为明天9:00
-            const tomorrow = new Date(now);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(9, 0, 0, 0);
-            beginInput.value = formatDateTimeLocal(tomorrow);
-            
-            // 默认结束时间为明天16:00
-            const tomorrowEnd = new Date(tomorrow);
-            tomorrowEnd.setHours(16, 0, 0, 0);
-            endInput.value = formatDateTimeLocal(tomorrowEnd);
+            if (endTimeInput && !endTimeInput.value) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(21, 0, 0, 0);
+                endTimeInput.value = formatDateTimeLocal(tomorrow);
+            }
         }
 
         function formatDateTimeLocal(date) {
@@ -1416,6 +1440,7 @@
             const statusEl = document.getElementById('loginStatus');
             const statusTextEl = document.getElementById('loginStatusText');
             const loginBtn = document.getElementById('loginBtnHeader');
+            const logoutBtn = document.getElementById('logoutBtn');
             const queryBtn = document.getElementById('queryBtn');
             const token = getToken();
             
@@ -1423,11 +1448,13 @@
                 statusEl.className = 'login-status logged-in';
                 statusTextEl.textContent = '已登录';
                 loginBtn.classList.add('hidden');
+                logoutBtn.classList.remove('hidden');
                 queryBtn.disabled = false;
             } else {
                 statusEl.className = 'login-status logged-out';
                 statusTextEl.textContent = '未登录';
                 loginBtn.classList.remove('hidden');
+                logoutBtn.classList.add('hidden');
                 queryBtn.disabled = true;
             }
         }
@@ -1932,7 +1959,7 @@
         }
 
         // 初始化
-        initDateTimeInputs();
+        setDefaultDateTime();
         updateLoginStatus();
 
         // 绑定技术支持事件（延迟执行以确保DOM已加载）
@@ -1946,13 +1973,13 @@
 
     <div class="footer">
         <div class="footer-info">
-            <span><a href="https://bwvstr.bit.edu.cn/" target="_blank" rel="noopener noreferrer">官方预约</a></span>
-            <span class="footer-separator">|</span>
             <span><a href="https://www.bit.edu.cn/" target="_blank" rel="noopener noreferrer">学校官网</a></span>
             <span class="footer-separator">|</span>
-            <span><a href="https://www.bugstack.icu/" target="_blank" rel="noopener noreferrer">友情链接</a></span>
+            <span><a href="https://bwvstr.bit.edu.cn/" target="_blank" rel="noopener noreferrer">预约入口（旧版）</a></span>
             <span class="footer-separator">|</span>
             <button class="support-btn" id="supportBtn" type="button">技术支持</button>
+            <span class="footer-separator">|</span>
+            <span><a href="https://www.bugstack.icu/" target="_blank" rel="noopener noreferrer">友情链接</a></span>
         </div>
         <div class="footer-meta">
             <span>© 2025 北京理工大学访客预约系统</span>
@@ -1961,7 +1988,7 @@
             <!-- <span class="footer-separator">|</span> -->
             <span>版本：v1.0.0</span>
             <span class="footer-separator">|</span>
-            <span>仅限校内访客预约使用，请勿用于其他用途</span>
+            <span>仅限入校访客预约使用，请勿用于其他用途</span>
         </div>
     </div>
 </body>
