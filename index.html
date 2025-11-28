@@ -16,9 +16,10 @@
             background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 50%, #fce7f3 100%);
             background-attachment: fixed;
             min-height: 100vh;
-            padding: 20px;
+            padding: 50px 20px 20px 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
             position: relative;
         }
@@ -53,6 +54,7 @@
             animation: fadeIn 0.5s ease-in;
             position: relative;
             z-index: 1;
+            margin-bottom: 0;
         }
 
         .container::before {
@@ -389,6 +391,22 @@
             transform: none;
         }
 
+        .btn-query {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        .btn-query:hover {
+            background: #bfdbfe;
+        }
+
+        .btn-query:disabled {
+            background: #f1f5f9;
+            color: #94a3b8;
+            border-color: #e2e8f0;
+        }
+
         .status-box {
             margin-top: 25px;
             padding: 18px 20px;
@@ -589,7 +607,7 @@
 
         .record-box {
             margin-top: 30px;
-            padding: 20px;
+            padding: 15px;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 12px;
             border: 1px solid rgba(59, 130, 246, 0.2);
@@ -600,6 +618,18 @@
 
         .record-box.show {
             display: block;
+        }
+
+        .record-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .record-content {
+                grid-template-columns: 1fr;
+            }
         }
 
         .record-title {
@@ -613,12 +643,12 @@
 
         .record-item {
             background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border-left: 4px solid #3b82f6;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 3px solid #3b82f6;
             border: 1px solid rgba(59, 130, 246, 0.2);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             animation: fadeInUp 0.5s ease-out;
             backdrop-filter: blur(10px);
@@ -635,15 +665,129 @@
         .record-item-label {
             font-weight: 600;
             color: #64748b;
-            margin-right: 8px;
+            margin-right: 6px;
+            min-width: 80px;
+            flex-shrink: 0;
+            font-size: 13px;
         }
 
         .record-item-value {
             color: #1e293b;
+            font-size: 13px;
+            flex: 1;
+            word-break: break-word;
         }
 
         .record-item-row {
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .record-item-row:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        .pagination-btn {
+            padding: 6px 12px;
+            background: #f3e8ff;
+            color: #9333ea;
+            border: 1px solid #d8b4fe;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            min-width: 36px;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: #e9d5ff;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(147, 51, 234, 0.2);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: #f1f5f9;
+            color: #94a3b8;
+            border-color: #e2e8f0;
+        }
+
+        .pagination-btn.active {
+            background: #9333ea;
+            color: white;
+            border-color: #9333ea;
+            font-weight: 600;
+        }
+
+        .pagination-info {
+            color: #64748b;
+            font-size: 13px;
+            margin: 0 8px;
+            white-space: nowrap;
+        }
+
+        .pagination-ellipsis {
+            color: #94a3b8;
+            padding: 0 4px;
+        }
+
+        .record-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .record-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .quick-link {
+            padding: 6px 14px;
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quick-link:hover {
+            background: #bfdbfe;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+        }
+
+        .record-detail-link {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
         }
 
         .loading {
@@ -838,19 +982,16 @@
         }
 
         .footer {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
             text-align: center;
             color: #94a3b8;
             font-size: 12px;
             line-height: 1.8;
-            z-index: 1;
-            pointer-events: none;
             width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
+            max-width: 800px;
+            padding: 20px 40px;
+            margin-top: 0;
+            pointer-events: none;
         }
 
         .footer a {
@@ -890,8 +1031,7 @@
         @media (max-width: 600px) {
             .footer {
                 font-size: 11px;
-                bottom: 10px;
-                padding: 0 15px;
+                padding: 15px 0;
             }
             .footer-info,
             .footer-meta {
@@ -957,7 +1097,10 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn" id="submitBtn">提交预约</button>
+            <div class="row">
+                <button type="submit" class="btn" id="submitBtn">提交预约</button>
+                <button type="button" class="btn btn-query" id="queryBtn">查询预约记录</button>
+            </div>
         </form>
 
         <div class="status-box" id="statusBox">
@@ -966,8 +1109,14 @@
         </div>
 
         <div class="record-box" id="recordBox">
-            <div class="record-title">预约记录</div>
-            <div id="recordContent"></div>
+            <div class="record-header">
+                <div class="record-title">预约记录</div>
+                <a href="https://bwvstr.bit.edu.cn/#/orderlist" target="_blank" rel="noopener noreferrer" class="quick-link" id="officialListLink" style="display: none;">
+                    查看预约列表
+                </a>
+            </div>
+            <div class="record-content" id="recordContent"></div>
+            <div class="pagination" id="pagination" style="display: none;"></div>
         </div>
     </div>
 
@@ -1141,8 +1290,8 @@
         }
 
         // 查询预约记录
-        async function getBookingRecords() {
-            const url = `${API_BASE}/guestorder?page=1&limit=10&baseOrderType=99`;
+        async function getBookingRecords(page = 1, limit = 10) {
+            const url = `${API_BASE}/guestorder?page=${page}&limit=${limit}&baseOrderType=99`;
             return await apiRequest(url, {
                 method: 'GET'
             });
@@ -1153,16 +1302,19 @@
             const statusEl = document.getElementById('loginStatus');
             const statusTextEl = document.getElementById('loginStatusText');
             const loginBtn = document.getElementById('loginBtnHeader');
+            const queryBtn = document.getElementById('queryBtn');
             const token = getToken();
             
             if (token) {
                 statusEl.className = 'login-status logged-in';
                 statusTextEl.textContent = '已登录';
                 loginBtn.classList.add('hidden');
+                queryBtn.disabled = false;
             } else {
                 statusEl.className = 'login-status logged-out';
                 statusTextEl.textContent = '未登录';
                 loginBtn.classList.remove('hidden');
+                queryBtn.disabled = true;
             }
         }
 
@@ -1326,7 +1478,7 @@
                     showSuccessModal(successMsg);
                     
                     // 查询预约记录
-                    await queryBookingRecords();
+                    await queryBookingRecords(1);
                 } else {
                     showStatus('error', '预约失败', response.msg || '预约失败，请重试');
                 }
@@ -1335,11 +1487,15 @@
             }
         }
 
+        // 当前分页状态
+        let currentPage = 1;
+        const pageSize = 4;
+
         // 查询预约记录
-        async function queryBookingRecords() {
+        async function queryBookingRecords(page = 1) {
             try {
                 showLoading('正在查询预约记录...');
-                let response = await getBookingRecords();
+                let response = await getBookingRecords(page, pageSize);
 
                 // 如果token过期，重新登录
                 if (response.code === 401) {
@@ -1368,11 +1524,12 @@
                 // 查询成功
                 if (response.code === 0) {
                     if (response.page && response.page.list && response.page.list.length > 0) {
-                        const record = response.page.list[0];
-                        displayBookingRecord(record);
-                        showStatus('success', '查询成功', '预约记录查询成功');
+                        currentPage = page;
+                        displayBookingRecords(response.page);
+                        showStatus('success', '查询成功', `共找到 ${response.page.totalCount} 条预约记录`);
                     } else {
                         showStatus('warning', '查询完成', '未找到预约记录');
+                        document.getElementById('recordBox').classList.remove('show');
                     }
                 } else {
                     showStatus('error', '查询失败', response.msg || '查询预约记录失败');
@@ -1382,62 +1539,120 @@
             }
         }
 
-        // 显示预约记录
-        function displayBookingRecord(record) {
+        // 显示预约记录列表（支持分页）
+        function displayBookingRecords(pageData) {
             const recordBox = document.getElementById('recordBox');
             const recordContent = document.getElementById('recordContent');
+            const pagination = document.getElementById('pagination');
             
-            const guest = record.guestList && record.guestList.length > 0 ? record.guestList[0] : null;
-            
-            let html = `
-                <div class="record-item">
-                    <div class="record-item-row">
-                        <span class="record-item-label">预约单号：</span>
-                        <span class="record-item-value">${record.guestOrderNo || '无'}</span>
+            let html = '';
+            pageData.list.forEach(record => {
+                const guest = record.guestList && record.guestList.length > 0 ? record.guestList[0] : null;
+                
+                html += `
+                    <div class="record-item">
+                        <div class="record-item-row">
+                            <span class="record-item-label">预约单号：</span>
+                            <span class="record-item-value">${record.guestOrderNo || '无'}</span>
+                        </div>
+                        <div class="record-item-row">
+                            <span class="record-item-label">校区：</span>
+                            <span class="record-item-value">${record.campusName || '无'}</span>
+                        </div>
+                        <div class="record-item-row">
+                            <span class="record-item-label">姓名：</span>
+                            <span class="record-item-value">${guest ? guest.name : record.name || '无'}</span>
+                        </div>
+                        <div class="record-item-row">
+                            <span class="record-item-label">手机号：</span>
+                            <span class="record-item-value">${guest ? guest.phone : record.phone || '无'}</span>
+                        </div>
+                        <div class="record-item-row">
+                            <span class="record-item-label">身份证号：</span>
+                            <span class="record-item-value">${guest ? guest.idcard : record.idcard || '无'}</span>
+                        </div>
+                        <div class="record-item-row">
+                            <span class="record-item-label">开始时间：</span>
+                            <span class="record-item-value">${record.beginTime || '无'}</span>
+                        </div>
+                        <div class="record-item-row">
+                            <span class="record-item-label">结束时间：</span>
+                            <span class="record-item-value">${record.endTime || '无'}</span>
+                        </div>
+                        <div class="record-item-row">
+                            <span class="record-item-label">状态：</span>
+                            <span class="record-item-value">${getStatusText(record.status)}</span>
+                        </div>
+                        <div class="record-item-row">
+                            <span class="record-item-label">申请时间：</span>
+                            <span class="record-item-value">${record.applyTime || record.createTime || '无'}</span>
+                        </div>
+                        ${record.guestOrderId ? `
+                        <div class="record-detail-link">
+                            <a href="https://bwvstr.bit.edu.cn/#/orderdetail?id=${record.guestOrderId}" target="_blank" rel="noopener noreferrer" class="quick-link">
+                                查看预约详情
+                            </a>
+                        </div>
+                        ` : ''}
                     </div>
-                    <div class="record-item-row">
-                        <span class="record-item-label">校区：</span>
-                        <span class="record-item-value">${record.campusName || '无'}</span>
-                    </div>
-                    <div class="record-item-row">
-                        <span class="record-item-label">姓名：</span>
-                        <span class="record-item-value">${guest ? guest.name : record.name || '无'}</span>
-                    </div>
-                    <div class="record-item-row">
-                        <span class="record-item-label">手机号：</span>
-                        <span class="record-item-value">${guest ? guest.phone : record.phone || '无'}</span>
-                    </div>
-                    <div class="record-item-row">
-                        <span class="record-item-label">身份证号：</span>
-                        <span class="record-item-value">${guest ? guest.idcard : record.idcard || '无'}</span>
-                    </div>
-                    <div class="record-item-row">
-                        <span class="record-item-label">开始时间：</span>
-                        <span class="record-item-value">${record.beginTime || '无'}</span>
-                    </div>
-                    <div class="record-item-row">
-                        <span class="record-item-label">结束时间：</span>
-                        <span class="record-item-value">${record.endTime || '无'}</span>
-                    </div>
-                    <div class="record-item-row">
-                        <span class="record-item-label">状态：</span>
-                        <span class="record-item-value">${getStatusText(record.status)}</span>
-                    </div>
-                    ${guest && guest.qrCode ? `
-                    <div class="record-item-row">
-                        <span class="record-item-label">二维码：</span>
-                        <span class="record-item-value">${guest.qrCode}</span>
-                    </div>
-                    ` : ''}
-                    <div class="record-item-row">
-                        <span class="record-item-label">申请时间：</span>
-                        <span class="record-item-value">${record.applyTime || record.createTime || '无'}</span>
-                    </div>
-                </div>
-            `;
+                `;
+            });
             
             recordContent.innerHTML = html;
             recordBox.classList.add('show');
+            
+            // 显示官方列表链接
+            document.getElementById('officialListLink').style.display = 'inline-flex';
+            
+            // 显示分页控件
+            if (pageData.totalPage > 1) {
+                displayPagination(pageData);
+                pagination.style.display = 'flex';
+            } else {
+                pagination.style.display = 'none';
+            }
+        }
+
+        // 显示分页控件
+        function displayPagination(pageData) {
+            const pagination = document.getElementById('pagination');
+            const totalPage = pageData.totalPage;
+            const current = currentPage;
+            
+            let html = '';
+            
+            // 上一页按钮
+            html += `<button class="pagination-btn" ${current === 1 ? 'disabled' : ''} onclick="queryBookingRecords(${current - 1})">上一页</button>`;
+            
+            // 页码按钮
+            let startPage = Math.max(1, current - 2);
+            let endPage = Math.min(totalPage, current + 2);
+            
+            if (startPage > 1) {
+                html += `<button class="pagination-btn" onclick="queryBookingRecords(1)">1</button>`;
+                if (startPage > 2) {
+                    html += `<span class="pagination-ellipsis">...</span>`;
+                }
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                html += `<button class="pagination-btn ${i === current ? 'active' : ''}" onclick="queryBookingRecords(${i})">${i}</button>`;
+            }
+            
+            if (endPage < totalPage) {
+                if (endPage < totalPage - 1) {
+                    html += `<span class="pagination-ellipsis">...</span>`;
+                }
+                html += `<button class="pagination-btn" onclick="queryBookingRecords(${totalPage})">${totalPage}</button>`;
+            }
+            
+            // 下一页按钮
+            html += `<button class="pagination-btn" ${current === totalPage ? 'disabled' : ''} onclick="queryBookingRecords(${current + 1})">下一页</button>`;
+            
+            // 分页信息
+            html += `<span class="pagination-info">第 ${current} / ${totalPage} 页，共 ${pageData.totalCount} 条</span>`;
+            
+            pagination.innerHTML = html;
         }
 
         function getStatusText(status) {
@@ -1544,6 +1759,14 @@
                 hideSuccessModal();
             }
         });
+
+        // 查询按钮点击事件
+        document.getElementById('queryBtn').addEventListener('click', () => {
+            queryBookingRecords(1);
+        });
+
+        // 将queryBookingRecords暴露到全局作用域，供分页按钮使用
+        window.queryBookingRecords = queryBookingRecords;
 
         // 初始化
         initDateTimeInputs();
