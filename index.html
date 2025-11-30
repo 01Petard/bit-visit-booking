@@ -117,6 +117,25 @@
             letter-spacing: 2px;
         }
 
+        .notice-link {
+            font-size: 12px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: normal;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(148, 163, 184, 0.1);
+            -webkit-text-fill-color: #64748b;
+            background-clip: unset;
+        }
+
+        .notice-link:hover {
+            color: #475569;
+            background: rgba(148, 163, 184, 0.2);
+        }
+
         .header-logo a {
             display: flex;
             align-items: center;
@@ -139,6 +158,11 @@
             height: 40px;
             width: auto;
             object-fit: contain;
+        }
+
+        .header-notice {
+            display: flex;
+            align-items: center;
         }
 
         .header-actions {
@@ -270,10 +294,16 @@
 
             .header-logo h1 {
                 font-size: 20px;
+                white-space: nowrap;
+            }
+            .header-notice {
+                justify-content: center;
+                order: 2;
             }
             .header-actions {
                 justify-content: center;
                 flex-wrap: wrap;
+                order: 3;
             }
             .container {
                 padding: 25px 20px;
@@ -292,6 +322,9 @@
 
             h1 {
                 font-size: 20px;
+            }
+            .header-notice {
+                justify-content: center;
             }
             .header-actions {
                 flex-direction: row;
@@ -1194,6 +1227,9 @@
                 </a>
                 <h1>访客预约系统</h1>
             </div>
+            <div class="header-notice">
+                <a href="javascript:void(0);" class="notice-link" id="noticeLink">预约须知</a>
+            </div>
             <div class="header-actions">
                 <div class="login-status" id="loginStatus">
                     <span class="login-status-dot"></span>
@@ -1301,6 +1337,22 @@
                 <p><strong>手机：</strong><span style="color: #1e293b;">13248684099</span></p>
             </div>
             <button type="button" class="btn" id="supportConfirmBtn">确定</button>
+        </div>
+    </div>
+
+    <div class="login-modal" id="noticeModal">
+        <div class="login-box" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+            <button class="close-btn" id="closeNoticeBtn">×</button>
+            <h2>预约须知</h2>
+            <div style="text-align: left; margin: 20px 0; line-height: 1.8; color: #475569;">
+                <h3 style="color: #1e293b; margin-bottom: 15px; font-size: 18px;">北京理工大学校园文明行为促进公约</h3>
+                <p style="margin-bottom: 12px;"><strong>一、爱护环境卫生。</strong>不随地吐痰、便溺；不乱丢垃圾，按规分类；不在非吸烟场所吸烟；不乱写乱画、乱贴宣传品。</p>
+                <p style="margin-bottom: 12px;"><strong>二、维护公共秩序。</strong>按规定进出校园；不高空抛物；不噪声干扰教学办公环境，不扰乱校园活动秩序；不施放"低慢小"航空器、风筝、气球、孔明灯；不私自举办展览、摆摊经营；不在校园内遛狗；爱护动物、花草树木及公共设施，不攀爬、不损坏。</p>
+                <p style="margin-bottom: 12px;"><strong>三、规范文明出行。</strong>遵守交通法规，礼让行人，有序停放；不超速行驶、不乱停乱放；不私设阻碍物、不擅自封路等妨碍机动车停放或通行。</p>
+                <p style="margin-bottom: 12px;"><strong>四、关注消防安全。</strong>不在公共区域堆放杂物；不私拉乱接电线，规范电动车充电；爱护消防设施；不违规动火作业；不堵塞消防通道。</p>
+                <p style="margin-bottom: 12px;"><strong>五、共筑网络文明。</strong>依法自律上网，自觉抵御不良有害信息，不信谣传谣，不跟风炒作，不恶意谩骂、诋毁、诽谤他人，不传播未经证实有可能造成负面影响的信息；不随意打开不明网站，不轻易透漏个人和他人重要信息。</p>
+            </div>
+            <button type="button" class="btn" id="noticeConfirmBtn">我已阅读</button>
         </div>
     </div>
 
@@ -1937,6 +1989,16 @@
             document.getElementById('supportModal').classList.remove('show');
         }
 
+        // 显示预约须知模态框
+        function showNoticeModal() {
+            document.getElementById('noticeModal').classList.add('show');
+        }
+
+        // 隐藏预约须知模态框
+        function hideNoticeModal() {
+            document.getElementById('noticeModal').classList.remove('show');
+        }
+
         // 绑定技术支持相关事件
         function bindSupportEvents() {
             const supportBtn = document.getElementById('supportBtn');
@@ -1966,16 +2028,51 @@
             }
         }
 
+        // 绑定预约须知相关事件
+        function bindNoticeEvents() {
+            const noticeLink = document.getElementById('noticeLink');
+            if (noticeLink) {
+                noticeLink.addEventListener('click', () => {
+                    showNoticeModal();
+                });
+            }
+
+            const closeNoticeBtn = document.getElementById('closeNoticeBtn');
+            if (closeNoticeBtn) {
+                closeNoticeBtn.addEventListener('click', hideNoticeModal);
+            }
+
+            const noticeConfirmBtn = document.getElementById('noticeConfirmBtn');
+            if (noticeConfirmBtn) {
+                noticeConfirmBtn.addEventListener('click', hideNoticeModal);
+            }
+
+            const noticeModal = document.getElementById('noticeModal');
+            if (noticeModal) {
+                noticeModal.addEventListener('click', (e) => {
+                    if (e.target.id === 'noticeModal') {
+                        hideNoticeModal();
+                    }
+                });
+            }
+        }
+
         // 初始化
         setDefaultDateTime();
         updateLoginStatus();
 
         // 绑定技术支持事件（延迟执行以确保DOM已加载）
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', bindSupportEvents);
+            document.addEventListener('DOMContentLoaded', () => {
+                bindSupportEvents();
+                bindNoticeEvents();
+            });
         } else {
             // DOM已经加载完成，延迟一点确保footer已渲染
-            setTimeout(bindSupportEvents, 0);
+            setTimeout(() => {
+                bindSupportEvents();
+                bindNoticeEvents();
+            }, 0);
         }
     </script>
 
