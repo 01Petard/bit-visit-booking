@@ -1163,11 +1163,19 @@
             }
             .footer-info,
             .footer-meta {
-                flex-direction: column;
-                gap: 4px;
+                flex-wrap: nowrap;
+                white-space: nowrap;
+                overflow-x: auto;
+                gap: 6px;
+                -webkit-overflow-scrolling: touch;
+            }
+            .footer-info span,
+            .footer-meta span {
+                white-space: nowrap;
+                flex-shrink: 0;
             }
             .footer-separator {
-                display: none;
+                display: inline;
             }
             .footer-meta {
                 font-size: 10px;
@@ -1288,7 +1296,7 @@
             <button class="close-btn" id="closeSupportBtn">×</button>
             <h2>技术支持</h2>
             <div style="text-align: left; margin: 20px 0; line-height: 2;">
-                <p style="margin-bottom: 15px; color: #475569;">如需技术支持，请联系 黄老师：</p>
+                <p style="margin-bottom: 15px; color: #475569;">如果遇到问题，请联系黄老师：</p>
                 <p style="margin-bottom: 10px;"><strong>邮箱：</strong><a href="mailto:1520394133@qq.com" style="color: #3b82f6; text-decoration: none;">1520394133@qq.com</a></p>
                 <p><strong>手机：</strong><span style="color: #1e293b;">13248684099</span></p>
             </div>
@@ -1973,21 +1981,21 @@
 
     <div class="footer">
         <div class="footer-info">
-            <span><a href="https://www.bit.edu.cn/" target="_blank" rel="noopener noreferrer">学校官网</a></span>
-            <span class="footer-separator">|</span>
+            <!-- <span><a href="https://www.bit.edu.cn/" target="_blank" rel="noopener noreferrer">学校官网</a></span>
+            <span class="footer-separator">|</span> -->
             <span><a href="https://bwvstr.bit.edu.cn/" target="_blank" rel="noopener noreferrer">预约入口（旧版）</a></span>
             <span class="footer-separator">|</span>
             <button class="support-btn" id="supportBtn" type="button">技术支持</button>
-            <span class="footer-separator">|</span>
-            <span><a href="https://www.bugstack.icu/" target="_blank" rel="noopener noreferrer">友情链接</a></span>
+            <!-- <span class="footer-separator">|</span>
+            <span><a href="https://www.bugstack.icu/" target="_blank" rel="noopener noreferrer">友情链接</a></span> -->
         </div>
         <div class="footer-meta">
-            <span>© 2025 北京理工大学访客预约系统</span>
-            <span class="footer-separator">|</span>
+            <!-- <span>© 2025 北京理工大学访客预约系统</span>
+            <span class="footer-separator">|</span> -->
             <!-- <span>备案号：京ICP备xxxxxxxx号</span> -->
             <!-- <span class="footer-separator">|</span> -->
-            <span>版本：v1.0.0</span>
-            <span class="footer-separator">|</span>
+            <!-- <span>版本：v1.0.0</span> -->
+            <!-- <span class="footer-separator">|</span> -->
             <span>仅限入校访客预约使用，请勿用于其他用途</span>
         </div>
     </div>
