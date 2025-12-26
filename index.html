@@ -1367,17 +1367,17 @@
             const endTimeInput = document.getElementById('endTime');
             
             if (beginTimeInput && !beginTimeInput.value) {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                tomorrow.setHours(9, 0, 0, 0);
-                beginTimeInput.value = formatDateTimeLocal(tomorrow);
+                const today = new Date();
+                today.setDate(today.getDate());
+                today.setHours(9, 0, 0, 0);
+                beginTimeInput.value = formatDateTimeLocal(today);
             }
             
             if (endTimeInput && !endTimeInput.value) {
-                const tomorrow = new Date();
-                tomorrow.setDate(tomorrow.getDate() + 1);
-                tomorrow.setHours(21, 0, 0, 0);
-                endTimeInput.value = formatDateTimeLocal(tomorrow);
+                const today = new Date();
+                today.setDate(today.getDate());
+                today.setHours(21, 0, 0, 0);
+                endTimeInput.value = formatDateTimeLocal(today);
             }
         }
 
