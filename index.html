@@ -529,21 +529,6 @@
             transform: none;
         }
 
-        #supportConfirmBtn {
-            background: #fed7aa;
-            color: #c2410c;
-            border: 1px solid rgba(234, 88, 12, 0.3);
-        }
-
-        #supportConfirmBtn:hover {
-            background: #fdba74;
-            box-shadow: 0 4px 16px rgba(234, 88, 12, 0.3);
-        }
-
-        #supportConfirmBtn:hover::before {
-            background: rgba(251, 146, 60, 0.3);
-        }
-
         .btn-query {
             background: #dbeafe;
             color: #1e40af;
@@ -558,71 +543,6 @@
             background: #f1f5f9;
             color: #94a3b8;
             border-color: #e2e8f0;
-        }
-
-        .status-box {
-            margin-top: 25px;
-            padding: 18px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            border-left: 4px solid #3b82f6;
-            display: none;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .status-box.show {
-            display: block;
-            animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-
-        .status-box.success {
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border-left-color: #10b981;
-            color: #065f46;
-        }
-
-        .status-box.error {
-            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-            border-left-color: #ef4444;
-            color: #991b1b;
-        }
-
-        .status-box.info {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            border-left-color: #3b82f6;
-            color: #1e40af;
-        }
-
-        .status-box.warning {
-            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-            border-left-color: #f59e0b;
-            color: #92400e;
-        }
-
-        .status-title {
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-content {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #475569;
         }
 
         .login-modal {
@@ -960,76 +880,11 @@
             100% { transform: rotate(360deg); }
         }
 
-        .success-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .success-modal.show {
-            display: flex;
-            animation: fadeIn 0.3s;
-        }
-
-        .success-box {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 450px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            text-align: center;
-            animation: scaleIn 0.3s ease-out;
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: white;
-            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
-        }
-
-        .success-box h2 {
-            color: #1e3a5f;
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
-
-        .success-box p {
-            color: #666;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .success-box .btn {
-            margin-top: 0;
+        .time-hint {
+            margin: -8px 0 20px;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
         .toast-container {
@@ -1132,6 +987,30 @@
 
         .toast.warning .toast-content {
             color: #a16207;
+        }
+
+        .toast.rich {
+            max-width: 460px;
+        }
+
+        .toast.rich .toast-content {
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .toast.rich .toast-content h3 {
+            color: #1e293b;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .toast.rich .toast-content p {
+            margin-bottom: 10px;
+        }
+
+        .toast.rich .toast-content p:last-child {
+            margin-bottom: 0;
         }
 
         .footer {
@@ -1275,17 +1154,13 @@
                     <input type="datetime-local" id="endTime" required>
                 </div>
             </div>
+            <p class="time-hint">可预约范围：今天之后的第 3 天起，每日 09:00 — 16:00</p>
 
             <div class="row">
                 <button type="submit" class="btn" id="submitBtn">提交预约</button>
                 <button type="button" class="btn btn-query" id="queryBtn">查询预约记录</button>
             </div>
         </form>
-
-        <div class="status-box" id="statusBox">
-            <div class="status-title" id="statusTitle"></div>
-            <div class="status-content" id="statusContent"></div>
-        </div>
 
         <div class="record-box" id="recordBox">
             <div class="record-header">
@@ -1318,66 +1193,38 @@
         </div>
     </div>
 
-    <div class="success-modal" id="successModal">
-        <div class="success-box">
-            <div class="success-icon">✓</div>
-            <h2>预约成功！</h2>
-            <p id="successMessage">您的预约已成功提交，请等待审核。</p>
-            <button type="button" class="btn" id="successConfirmBtn">确定</button>
-        </div>
-    </div>
-
-    <div class="login-modal" id="supportModal">
-        <div class="login-box">
-            <button class="close-btn" id="closeSupportBtn">×</button>
-            <h2>技术支持</h2>
-            <div style="text-align: left; margin: 20px 0; line-height: 2;">
-                <p style="margin-bottom: 15px; color: #475569;">如果遇到问题，请联系黄老师：</p>
-                <p style="margin-bottom: 10px;"><strong>邮箱：</strong><a href="mailto:1520394133@qq.com" style="color: #3b82f6; text-decoration: none;">1520394133@qq.com</a></p>
-                <p><strong>手机：</strong><span style="color: #1e293b;">13248684099</span></p>
-            </div>
-            <button type="button" class="btn" id="supportConfirmBtn">确定</button>
-        </div>
-    </div>
-
-    <div class="login-modal" id="noticeModal">
-        <div class="login-box" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
-            <button class="close-btn" id="closeNoticeBtn">×</button>
-            <h2>预约须知</h2>
-            <div style="text-align: left; margin: 20px 0; line-height: 1.8; color: #475569;">
-                <h3 style="color: #1e293b; margin-bottom: 15px; font-size: 18px;">北京理工大学校园文明行为促进公约</h3>
-                <p style="margin-bottom: 12px;"><strong>一、爱护环境卫生。</strong>不随地吐痰、便溺；不乱丢垃圾，按规分类；不在非吸烟场所吸烟；不乱写乱画、乱贴宣传品。</p>
-                <p style="margin-bottom: 12px;"><strong>二、维护公共秩序。</strong>按规定进出校园；不高空抛物；不噪声干扰教学办公环境，不扰乱校园活动秩序；不施放"低慢小"航空器、风筝、气球、孔明灯；不私自举办展览、摆摊经营；不在校园内遛狗；爱护动物、花草树木及公共设施，不攀爬、不损坏。</p>
-                <p style="margin-bottom: 12px;"><strong>三、规范文明出行。</strong>遵守交通法规，礼让行人，有序停放；不超速行驶、不乱停乱放；不私设阻碍物、不擅自封路等妨碍机动车停放或通行。</p>
-                <p style="margin-bottom: 12px;"><strong>四、关注消防安全。</strong>不在公共区域堆放杂物；不私拉乱接电线，规范电动车充电；爱护消防设施；不违规动火作业；不堵塞消防通道。</p>
-                <p style="margin-bottom: 12px;"><strong>五、共筑网络文明。</strong>依法自律上网，自觉抵御不良有害信息，不信谣传谣，不跟风炒作，不恶意谩骂、诋毁、诽谤他人，不传播未经证实有可能造成负面影响的信息；不随意打开不明网站，不轻易透漏个人和他人重要信息。</p>
-            </div>
-            <button type="button" class="btn" id="noticeConfirmBtn">我已阅读</button>
-        </div>
-    </div>
-
     <script>
         const API_BASE = 'https://bwvstr.bit.edu.cn/api/guestuser';
         const TOKEN_KEY = 'bit_visit_token';
         const BOOKING_PARAMS_KEY = 'bit_booking_params';
+        const MIN_BOOKING_DAYS_AHEAD = 3;
+        const BOOKING_START_MINUTES = 9 * 60;
+        const BOOKING_END_MINUTES = 16 * 60;
+
+        // 最早可预约日期为今天之后的第 3 天，当天从 09:00 开始
+        function getEarliestBookingDate() {
+            const date = new Date();
+            date.setHours(0, 0, 0, 0);
+            date.setDate(date.getDate() + MIN_BOOKING_DAYS_AHEAD);
+            return date;
+        }
 
         // 设置默认日期时间
         function setDefaultDateTime() {
             const beginTimeInput = document.getElementById('beginTime');
             const endTimeInput = document.getElementById('endTime');
-            
+            const earliestDate = getEarliestBookingDate();
+
             if (beginTimeInput && !beginTimeInput.value) {
-                const today = new Date();
-                today.setDate(today.getDate());
-                today.setHours(9, 0, 0, 0);
-                beginTimeInput.value = formatDateTimeLocal(today);
+                const beginTime = new Date(earliestDate);
+                beginTime.setMinutes(BOOKING_START_MINUTES);
+                beginTimeInput.value = formatDateTimeLocal(beginTime);
             }
-            
+
             if (endTimeInput && !endTimeInput.value) {
-                const today = new Date();
-                today.setDate(today.getDate());
-                today.setHours(21, 0, 0, 0);
-                endTimeInput.value = formatDateTimeLocal(today);
+                const endTime = new Date(earliestDate);
+                endTime.setMinutes(BOOKING_END_MINUTES);
+                endTimeInput.value = formatDateTimeLocal(endTime);
             }
         }
 
@@ -1395,18 +1242,107 @@
             return dateStr.replace('T', ' ') + ':00';
         }
 
-        function showStatus(type, title, content) {
-            const statusBox = document.getElementById('statusBox');
-            const statusTitle = document.getElementById('statusTitle');
-            const statusContent = document.getElementById('statusContent');
-            
-            statusBox.className = `status-box show ${type}`;
-            statusTitle.textContent = title;
-            statusContent.innerHTML = content;
+        function formatBookingDate(date) {
+            return `${date.getMonth() + 1}月${date.getDate()}日`;
+        }
+
+        // 返回不可预约的原因，null 表示时间合法
+        function getBookingTimeError(beginTime, endTime) {
+            const begin = new Date(beginTime);
+            const end = new Date(endTime);
+            const earliestDate = getEarliestBookingDate();
+
+            if (Number.isNaN(begin.getTime()) || Number.isNaN(end.getTime())) {
+                return '请选择有效的开始时间和结束时间。';
+            }
+
+            if (begin < earliestDate) {
+                return `最早只能预约 ${formatBookingDate(earliestDate)}（今天之后的第 3 天）及以后的日期。`;
+            }
+
+            const beginMinutes = begin.getHours() * 60 + begin.getMinutes();
+            const endMinutes = end.getHours() * 60 + end.getMinutes();
+            if (beginMinutes < BOOKING_START_MINUTES || endMinutes < BOOKING_START_MINUTES) {
+                return '每日最早可预约时间为 09:00。';
+            }
+            if (beginMinutes > BOOKING_END_MINUTES || endMinutes > BOOKING_END_MINUTES) {
+                return '每日最晚可预约时间为 16:00。';
+            }
+            if (end <= begin) {
+                return '结束时间必须晚于开始时间。';
+            }
+
+            return null;
+        }
+
+        let loadingToast = null;
+
+        function dismissLoadingToast() {
+            if (loadingToast) {
+                loadingToast.remove();
+                loadingToast = null;
+            }
+        }
+
+        function appendToast(toast, duration) {
+            const container = document.getElementById('toastContainer');
+            if (!container) {
+                return;
+            }
+
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+
+            if (duration > 0) {
+                setTimeout(() => {
+                    toast.classList.add('hiding');
+                    setTimeout(() => toast.remove(), 400);
+                }, duration);
+            }
+        }
+
+        // rich 仅用于页面内静态文案，动态内容仍需使用普通文本模式
+        function showToast(type, title, content, duration = 3500, rich = false) {
+            dismissLoadingToast();
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}${rich ? ' rich' : ''}`;
+
+            const titleEl = document.createElement('div');
+            titleEl.className = 'toast-title';
+            titleEl.textContent = title;
+
+            const contentEl = document.createElement('div');
+            contentEl.className = 'toast-content';
+            if (rich) {
+                contentEl.innerHTML = content;
+            } else {
+                contentEl.textContent = content;
+            }
+
+            toast.append(titleEl, contentEl);
+            appendToast(toast, duration);
         }
 
         function showLoading(text) {
-            showStatus('info', '处理中', `<span class="loading"></span>${text}`);
+            dismissLoadingToast();
+
+            const toast = document.createElement('div');
+            toast.className = 'toast info';
+
+            const titleEl = document.createElement('div');
+            titleEl.className = 'toast-title';
+            titleEl.textContent = '处理中';
+
+            const contentEl = document.createElement('div');
+            contentEl.className = 'toast-content';
+            const spinner = document.createElement('span');
+            spinner.className = 'loading';
+            contentEl.append(spinner, document.createTextNode(text));
+
+            toast.append(titleEl, contentEl);
+            appendToast(toast, 0);
+            loadingToast = toast;
         }
 
         function getToken() {
@@ -1536,22 +1472,12 @@
             document.getElementById('loginModal').classList.remove('show');
         }
 
-        // 显示技术支持模态框
-        function showSupportModal() {
-            document.getElementById('supportModal').classList.add('show');
-        }
-
-        // 隐藏技术支持模态框
-        function hideSupportModal() {
-            document.getElementById('supportModal').classList.remove('show');
-        }
-
         // 发送验证码
         let countdown = 0;
         async function handleSendCode() {
             const phone = document.getElementById('loginPhone').value;
             if (!phone || phone.length !== 11) {
-                alert('请输入正确的手机号');
+                showToast('warning', '输入有误', '请输入正确的手机号');
                 return;
             }
 
@@ -1563,7 +1489,7 @@
                 const response = await getCode(phone);
                 
                 if (response.code === 0) {
-                    showStatus('success', '验证码已发送', '验证码已发送到您的手机，请查收');
+                    showToast('success', '验证码已发送', '验证码已发送到您的手机，请查收');
                     
                     // 倒计时
                     countdown = 60;
@@ -1577,11 +1503,11 @@
                         }
                     }, 1000);
                 } else {
-                    showStatus('error', '发送失败', response.msg || '验证码发送失败，请重试');
+                    showToast('error', '发送失败', response.msg || '验证码发送失败，请重试');
                     btn.disabled = false;
                 }
             } catch (error) {
-                showStatus('error', '网络错误', '网络请求失败，请检查网络连接');
+                showToast('error', '网络错误', '网络请求失败，请检查网络连接');
                 btn.disabled = false;
             }
         }
@@ -1592,12 +1518,12 @@
             const code = document.getElementById('loginCode').value;
 
             if (!phone || phone.length !== 11) {
-                alert('请输入正确的手机号');
+                showToast('warning', '输入有误', '请输入正确的手机号');
                 return;
             }
 
             if (!code) {
-                alert('请输入验证码');
+                showToast('warning', '输入有误', '请输入验证码');
                 return;
             }
 
@@ -1610,7 +1536,7 @@
                 const token = await phoneLogin(phone, code);
                 
                 if (token) {
-                    showStatus('success', '登录成功', '登录成功，正在继续预约流程...');
+                    showToast('success', '登录成功', '登录成功，正在继续预约流程...');
                     updateLoginStatus();
                     hideLoginModal();
                     // 更新表单中的手机号
@@ -1620,13 +1546,13 @@
                         continueBooking();
                     }, 1000);
                 } else {
-                    showStatus('error', '登录失败', '验证码错误，请重新输入');
+                    showToast('error', '登录失败', '验证码错误，请重新输入');
                     loginBtn.disabled = false;
                     loginBtn.textContent = '登录';
                     document.getElementById('loginCode').value = '';
                 }
             } catch (error) {
-                showStatus('error', '网络错误', '网络请求失败，请检查网络连接');
+                showToast('error', '网络错误', '网络请求失败，请检查网络连接');
                 loginBtn.disabled = false;
                 loginBtn.textContent = '登录';
             }
@@ -1650,7 +1576,7 @@
         async function continueBooking() {
             const params = getSavedBookingParams();
             if (!params) {
-                showStatus('error', '错误', '预约参数丢失，请重新填写表单');
+                showToast('error', '错误', '预约参数丢失，请重新填写表单');
                 return;
             }
 
@@ -1669,32 +1595,29 @@
 
                 // 如果token过期，需要登录
                 if (response.code === 401) {
-                    showStatus('warning', '需要登录', '检测到登录已过期，请先登录');
+                    showToast('warning', '需要登录', '检测到登录已过期，请先登录');
                     showLoginModal();
                     return;
                 }
 
                 // 如果还是401，说明有问题
                 if (response.code === 401) {
-                    showStatus('error', '预约失败', '已获取token，但由于未知原因无法预约');
+                    showToast('error', '预约失败', '已获取token，但由于未知原因无法预约');
                     return;
                 }
 
                 // 预约成功
                 if (response.code === 0) {
-                    showStatus('success', '预约成功', response.plateInfo || '预约已成功提交！');
-                    
-                    // 显示成功弹窗
                     const successMsg = response.plateInfo || '您的预约已成功提交，请等待审核。';
-                    showSuccessModal(successMsg);
-                    
+                    showToast('success', '预约成功', successMsg, 5000);
+
                     // 查询预约记录
                     await queryBookingRecords(1);
                 } else {
-                    showStatus('error', '预约失败', response.msg || '预约失败，请重试');
+                    showToast('error', '预约失败', response.msg || '预约失败，请重试');
                 }
             } catch (error) {
-                showStatus('error', '网络错误', '网络请求失败：' + error.message);
+                showToast('error', '网络错误', '网络请求失败：' + error.message);
             }
         }
 
@@ -1710,25 +1633,25 @@
 
                 // 如果token过期，重新登录
                 if (response.code === 401) {
-                    showStatus('warning', '需要重新登录', '查询时token已失效，正在重新登录...');
+                    showToast('warning', '需要重新登录', '查询时token已失效，正在重新登录...');
                     
                     const phone = document.getElementById('phone').value;
                     if (!phone) {
-                        showStatus('error', '错误', '无法重新登录：手机号未填写');
+                        showToast('error', '错误', '无法重新登录：手机号未填写');
                         return;
                     }
 
                     // 获取验证码
                     const codeResponse = await getCode(phone);
                     if (codeResponse.code !== 0) {
-                        showStatus('error', '错误', '获取验证码失败：' + codeResponse.msg);
+                        showToast('error', '错误', '获取验证码失败：' + codeResponse.msg);
                         return;
                     }
 
                     // 显示登录框
                     document.getElementById('loginPhone').value = phone;
                     showLoginModal();
-                    showStatus('info', '请登录', '请在弹出的窗口中输入验证码完成登录');
+                    showToast('info', '请登录', '请在弹出的窗口中输入验证码完成登录');
                     return;
                 }
 
@@ -1737,16 +1660,16 @@
                     if (response.page && response.page.list && response.page.list.length > 0) {
                         currentPage = page;
                         displayBookingRecords(response.page);
-                        showStatus('success', '查询成功', `共找到 ${response.page.totalCount} 条预约记录`);
+                        showToast('success', '查询成功', `共找到 ${response.page.totalCount} 条预约记录`);
                     } else {
-                        showStatus('warning', '查询完成', '未找到预约记录');
+                        showToast('warning', '查询完成', '未找到预约记录');
                         document.getElementById('recordBox').classList.remove('show');
                     }
                 } else {
-                    showStatus('error', '查询失败', response.msg || '查询预约记录失败');
+                    showToast('error', '查询失败', response.msg || '查询预约记录失败');
                 }
             } catch (error) {
-                showStatus('error', '查询失败', '查询预约记录时出错：' + error.message);
+                showToast('error', '查询失败', '查询预约记录时出错：' + error.message);
             }
         }
 
@@ -1876,18 +1799,6 @@
             return statusMap[status] || '未知';
         }
 
-        // 显示成功弹窗
-        function showSuccessModal(message) {
-            const modal = document.getElementById('successModal');
-            const messageEl = document.getElementById('successMessage');
-            messageEl.textContent = message || '您的预约已成功提交，请等待审核。';
-            modal.classList.add('show');
-        }
-
-        function hideSuccessModal() {
-            document.getElementById('successModal').classList.remove('show');
-        }
-
         // 退出登录
         function handleLogout() {
             const token = getToken();
@@ -1895,9 +1806,9 @@
                 localStorage.removeItem(TOKEN_KEY);
                 localStorage.removeItem(BOOKING_PARAMS_KEY);
                 updateLoginStatus();
-                showStatus('success', '退出成功', '已成功退出登录');
+                showToast('success', '退出成功', '已成功退出登录');
             } else {
-                showStatus('info', '提示', '您当前未登录，无需退出');
+                showToast('info', '提示', '您当前未登录，无需退出');
             }
         }
 
@@ -1905,10 +1816,6 @@
         document.getElementById('bookingForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = '预约中...';
-
             const params = {
                 campusId: document.getElementById('campusId').value,
                 name: document.getElementById('name').value,
@@ -1918,15 +1825,15 @@
                 endTime: document.getElementById('endTime').value
             };
 
-            // 验证时间
-            const begin = new Date(params.beginTime);
-            const end = new Date(params.endTime);
-            if (end <= begin) {
-                showStatus('error', '时间错误', '结束时间必须晚于开始时间');
-                submitBtn.disabled = false;
-                submitBtn.textContent = '提交预约';
+            const timeError = getBookingTimeError(params.beginTime, params.endTime);
+            if (timeError) {
+                showToast('warning', '预约时间不符合要求', timeError);
                 return;
             }
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '预约中...';
 
             await processBooking(params);
             
@@ -1961,16 +1868,6 @@
             }
         });
 
-        // 成功弹窗确定按钮
-        document.getElementById('successConfirmBtn').addEventListener('click', hideSuccessModal);
-
-        // 点击成功弹窗背景关闭
-        document.getElementById('successModal').addEventListener('click', (e) => {
-            if (e.target.id === 'successModal') {
-                hideSuccessModal();
-            }
-        });
-
         // 查询按钮点击事件
         document.getElementById('queryBtn').addEventListener('click', () => {
             queryBookingRecords(1);
@@ -1979,81 +1876,41 @@
         // 将queryBookingRecords暴露到全局作用域，供分页按钮使用
         window.queryBookingRecords = queryBookingRecords;
 
-        // 显示技术支持模态框
-        function showSupportModal() {
-            document.getElementById('supportModal').classList.add('show');
+        // 技术支持信息以右上角限时通知展示
+        function showSupportToast() {
+            const content = `
+                <p>如果遇到问题，请联系黄老师：</p>
+                <p><strong>邮箱：</strong><a href="mailto:1520394133@qq.com">1520394133@qq.com</a></p>
+                <p><strong>手机：</strong>13248684099</p>
+            `;
+            showToast('info', '技术支持', content, 12000, true);
         }
 
-        // 隐藏技术支持模态框
-        function hideSupportModal() {
-            document.getElementById('supportModal').classList.remove('show');
+        // 预约须知以右上角限时通知展示，长内容可滚动查看
+        function showNoticeToast() {
+            const content = `
+                <h3>北京理工大学校园文明行为促进公约</h3>
+                <p><strong>一、爱护环境卫生。</strong>不随地吐痰、便溺；不乱丢垃圾，按规分类；不在非吸烟场所吸烟；不乱写乱画、乱贴宣传品。</p>
+                <p><strong>二、维护公共秩序。</strong>按规定进出校园；不高空抛物；不噪声干扰教学办公环境，不扰乱校园活动秩序；不施放"低慢小"航空器、风筝、气球、孔明灯；不私自举办展览、摆摊经营；不在校园内遛狗；爱护动物、花草树木及公共设施，不攀爬、不损坏。</p>
+                <p><strong>三、规范文明出行。</strong>遵守交通法规，礼让行人，有序停放；不超速行驶、不乱停乱放；不私设阻碍物、不擅自封路等妨碍机动车停放或通行。</p>
+                <p><strong>四、关注消防安全。</strong>不在公共区域堆放杂物；不私拉乱接电线，规范电动车充电；爱护消防设施；不违规动火作业；不堵塞消防通道。</p>
+                <p><strong>五、共筑网络文明。</strong>依法自律上网，自觉抵御不良有害信息，不信谣传谣，不跟风炒作，不恶意谩骂、诋毁、诽谤他人，不传播未经证实有可能造成负面影响的信息；不随意打开不明网站，不轻易透漏个人和他人重要信息。</p>
+            `;
+            showToast('info', '预约须知', content, 20000, true);
         }
 
-        // 显示预约须知模态框
-        function showNoticeModal() {
-            document.getElementById('noticeModal').classList.add('show');
-        }
-
-        // 隐藏预约须知模态框
-        function hideNoticeModal() {
-            document.getElementById('noticeModal').classList.remove('show');
-        }
-
-        // 绑定技术支持相关事件
+        // 绑定技术支持与预约须知入口
         function bindSupportEvents() {
             const supportBtn = document.getElementById('supportBtn');
             if (supportBtn) {
-                supportBtn.addEventListener('click', () => {
-                    showSupportModal();
-                });
-            }
-
-            const closeSupportBtn = document.getElementById('closeSupportBtn');
-            if (closeSupportBtn) {
-                closeSupportBtn.addEventListener('click', hideSupportModal);
-            }
-
-            const supportConfirmBtn = document.getElementById('supportConfirmBtn');
-            if (supportConfirmBtn) {
-                supportConfirmBtn.addEventListener('click', hideSupportModal);
-            }
-
-            const supportModal = document.getElementById('supportModal');
-            if (supportModal) {
-                supportModal.addEventListener('click', (e) => {
-                    if (e.target.id === 'supportModal') {
-                        hideSupportModal();
-                    }
-                });
+                supportBtn.addEventListener('click', showSupportToast);
             }
         }
 
-        // 绑定预约须知相关事件
         function bindNoticeEvents() {
             const noticeLink = document.getElementById('noticeLink');
             if (noticeLink) {
-                noticeLink.addEventListener('click', () => {
-                    showNoticeModal();
-                });
-            }
-
-            const closeNoticeBtn = document.getElementById('closeNoticeBtn');
-            if (closeNoticeBtn) {
-                closeNoticeBtn.addEventListener('click', hideNoticeModal);
-            }
-
-            const noticeConfirmBtn = document.getElementById('noticeConfirmBtn');
-            if (noticeConfirmBtn) {
-                noticeConfirmBtn.addEventListener('click', hideNoticeModal);
-            }
-
-            const noticeModal = document.getElementById('noticeModal');
-            if (noticeModal) {
-                noticeModal.addEventListener('click', (e) => {
-                    if (e.target.id === 'noticeModal') {
-                        hideNoticeModal();
-                    }
-                });
+                noticeLink.addEventListener('click', showNoticeToast);
             }
         }
 
@@ -2096,5 +1953,7 @@
             <span>仅限入校访客预约使用，请勿用于其他用途</span>
         </div>
     </div>
+
+    <div class="toast-container" id="toastContainer"></div>
 </body>
 </html>
