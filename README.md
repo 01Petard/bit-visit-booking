@@ -6,7 +6,7 @@
 
 ### 在线访问
 
-🌐 **直接访问**：[https://bit.bugstack.icu/](https://bit.bugstack.icu/)
+🌐 **直接访问**：[https://bit.bugstack.top/](https://bit.bugstack.top/)
 
 ### 本地部署
 
@@ -117,10 +117,10 @@
 
 ## 🔗 相关链接
 
-- [在线访问系统](https://bit.bugstack.icu/)
+- [在线访问系统](https://bit.bugstack.top/)
 - [官方预约系统](https://bwvstr.bit.edu.cn/)
 - [学校官网](https://www.bit.edu.cn/)
-- [作者博客](https://www.bugstack.icu/)
+- [作者博客](https://www.bugstack.top/)
 
 ## 📝 版本信息
 
